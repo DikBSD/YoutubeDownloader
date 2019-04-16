@@ -20,8 +20,9 @@ namespace YoutubeDownloader.Internal
             for (var i = 1; i <= maxAttempts; i++)
             {
                 // Assemble file path
-                var fileName = $"{baseFileNameWithoutExtension} ({i}){baseFileExtension}";
-                var filePath = baseDirPath.IsNotBlank() ? Path.Combine(baseDirPath, fileName) : fileName;
+                var filePath = $"{baseFileNameWithoutExtension} ({i}){baseFileExtension}";
+                if (!baseDirPath.IsNullOrWhiteSpace())
+                    filePath = Path.Combine(baseDirPath, filePath);
 
                 // Check if file exists
                 if (!File.Exists(filePath))

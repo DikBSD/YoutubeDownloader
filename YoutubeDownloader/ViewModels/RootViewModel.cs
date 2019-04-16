@@ -138,7 +138,7 @@ namespace YoutubeDownloader.ViewModels
             download.MarkAsCompleted();
         }
 
-        public bool CanProcessQuery => !IsBusy && Query.IsNotBlank();
+        public bool CanProcessQuery => !IsBusy && !Query.IsNullOrWhiteSpace();
 
         public async void ProcessQuery()
         {

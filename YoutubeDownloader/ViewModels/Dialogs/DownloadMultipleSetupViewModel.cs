@@ -42,7 +42,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
                 : AvailableFormats.FirstOrDefault();
         }
 
-        public bool CanConfirm => SelectedVideos != null && SelectedVideos.Count > 0;
+        public bool CanConfirm => !SelectedVideos.IsNullOrEmpty();
 
         public void Confirm()
         {
@@ -50,7 +50,7 @@ namespace YoutubeDownloader.ViewModels.Dialogs
             var dirPath = _dialogManager.PromptDirectoryPath();
 
             // If canceled - return
-            if (dirPath.IsBlank())
+            if (dirPath.IsNullOrWhiteSpace())
                 return;
 
             // Save last used format
